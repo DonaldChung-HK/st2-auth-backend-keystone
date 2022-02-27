@@ -1,19 +1,24 @@
-# OpenStack Keystone authentication plugin for StackStorm Community edition
+# OpenStack Keystone authentication plugin for StackStorm Community edition 
 
-[![Build Status](https://api.travis-ci.org/StackStorm/st2-auth-backend-keystone.svg?branch=master)](https://travis-ci.org/StackStorm/st2-auth-backend-keystone) [![IRC](https://img.shields.io/irc/%23stackstorm.png)](http://webchat.freenode.net/?channels=stackstorm)
+Cloned from [StackStorm/st2-auth-backend-keystone](https://github.com/StackStorm/st2-auth-backend-keystone)
 
-The OpenStack Keystone backend reads credentials and authenticates user against an OpenStack
-Keystone instance. This backend was originally contributed to st2 repo by [itaka](
-https://github.com/Itxaka) under [PR #1732](https://github.com/StackStorm/st2/pull/1732),
-[PR #1737](https://github.com/StackStorm/st2/pull/1737), and 
-[PR #1984](https://github.com/StackStorm/st2/pull/1984).
+## New Feature
+- Fixed for Python 3
+- Can select the user domain for OpenStack Keystone V3
+
+## Installation
+Install it to the vitrualenv of st2 using:
+```
+sudo /opt/stackstorm/st2/bin/pip install git+https://github.com/DonaldChung-HK/st2-auth-backend-keystone.git@master#egg=st2_auth_backend_keystone
+```
 
 ### Configuration Options
 
-| option           | required | default | description                                              |
-|------------------|----------|---------|----------------------------------------------------------|
-| keystone_url     | yes      |         | Keystone public URL (i.e. "http://example.com:5000")     |
-| keystone_version | no       | 2       | Keystone API version                                     |
+| option           | required | default   | description                                              |
+|------------------|----------|-----------|----------------------------------------------------------|
+| keystone_url     | yes      |           | Keystone public URL (i.e. "http://example.com:5000")     |
+| keystone_version | no       | 2         | Keystone API version                                     |
+| domain           | no       | "default" | Domain of Keystone (only for keystone version 3)                                       |
 
 ### Configuration Example
 
@@ -26,7 +31,7 @@ backend.
 [auth]
 mode = standalone
 backend = keystone
-backend_kwargs = {"keystone_url": "http://identity.example.com:5000", "keystone_version": 2}
+backend_kwargs = {"keystone_url": "https://identity.example.com:5000", "keystone_version": 3, "domain": "default"}
 enable = True
 use_ssl = True
 cert = /path/to/ssl/cert/file
