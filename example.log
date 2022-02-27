@@ -1,0 +1,6 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): dev-openstack.stfc.ac.uk:5000
+DEBUG:urllib3.connectionpool:https://dev-openstack.stfc.ac.uk:5000 "POST /v3/auth/tokens HTTP/1.1" 401 109
+DEBUG:st2auth_keystone_backend.keystone:Authentication for user "bmm66251" failed: b'{"error":{"code":401,"message":"The request you have made requires authentication.","title":"Unauthorized"}}\n'
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): dev-openstack.stfc.ac.uk:5000
+DEBUG:urllib3.connectionpool:https://dev-openstack.stfc.ac.uk:5000 "POST /v3/auth/tokens HTTP/1.1" 201 312
+DEBUG:st2auth_keystone_backend.keystone:Authentication for user "admin" successful

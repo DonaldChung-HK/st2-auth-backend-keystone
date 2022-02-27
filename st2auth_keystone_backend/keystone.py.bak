@@ -13,10 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import absolute_import
-
 import logging
-import http.client
+import httplib
 
 import requests
 
@@ -71,7 +69,7 @@ class KeystoneAuthenticationBackend(object):
             LOG.debug('Authentication for user "{}" failed: {}'.format(username, str(e)))
             return False
 
-        if login.status_code in [http.client.OK, http.client.CREATED]:
+        if login.status_code in [httplib.OK, httplib.CREATED]:
             LOG.debug('Authentication for user "{}" successful'.format(username))
             return True
         else:
