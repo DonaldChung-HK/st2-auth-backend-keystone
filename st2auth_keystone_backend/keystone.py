@@ -35,12 +35,14 @@ class KeystoneAuthenticationBackend(object):
     Note: This backend depends on the "requests" library.
     """
 
-    def __init__(self, keystone_url, keystone_version=2):
+    def __init__(self, keystone_url, keystone_version=3, domain= "default"):
         """
         :param keystone_url: Url of the Keystone server to authenticate against.
         :type keystone_url: ``str``
         :param keystone_version: Keystone version to authenticate against (default to 2).
         :type keystone_version: ``int``
+        :param domain: The domain of keystone authentication
+        :type keystone_version: ``str``
         """
         url = urlparse(keystone_url)
         if url.path != '' or url.query != '' or url.fragment != '':
@@ -49,6 +51,7 @@ class KeystoneAuthenticationBackend(object):
                             "(e.x.: http://example.com:5000)".format(keystone_url))
         self._keystone_url = keystone_url
         self._keystone_version = keystone_version
+        self._domain = domain
 
     def authenticate(self, username, password):
         if self._keystone_version == 2:
@@ -98,7 +101,7 @@ class KeystoneAuthenticationBackend(object):
                         "user": {
                             "name": username,
                             "domain": {
-                                "id": "default"
+                                "id": self._domain
                             },
                             "password": password
                         }
