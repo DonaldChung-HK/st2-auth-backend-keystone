@@ -18,7 +18,7 @@ sudo /opt/stackstorm/st2/bin/pip install git+https://github.com/DonaldChung-HK/s
 |------------------|----------|-----------|----------------------------------------------------------|
 | keystone_url     | yes      |           | Keystone public URL (i.e. "http://example.com:5000")     |
 | keystone_version | no       | 2         | Keystone API version                                     |
-| domain           | no       | "default" | Domain of Keystone (only for keystone version 3)                                       |
+| domain           | no       | "default" | Domain ID of Keystone (only for keystone version 3)                                       |
 
 ### Configuration Example
 
